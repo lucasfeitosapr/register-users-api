@@ -8,6 +8,7 @@
 - npm with sudo (global)
 - nodejs
 - make
+- docker-compose
 - Linux (not only linux, but we recomend it.)
 
 ### Clone
@@ -16,7 +17,7 @@
 
 ### Setup
 
-- Inside the root, just run:
+- After you installed all prerequisites, go inside the root (the place where the MakeFile is) and just run:
 
 ```shell
 $ sudo make run
