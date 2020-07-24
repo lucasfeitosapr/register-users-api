@@ -50,7 +50,7 @@
 
           <!-- CEP -->
           <div>
-            <input formControlName="cep" placeholder="Ex:12345-123">
+            <input formControlName="cep" placeholder="Ex:12345-123" (focusout)="validateCep()">
           </div>
           <div *ngIf="cep.invalid && cep.touched">
             <div *ngIf="cep.errors.required">

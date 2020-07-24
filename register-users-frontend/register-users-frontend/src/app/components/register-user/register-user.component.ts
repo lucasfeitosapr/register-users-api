@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import { CepService } from 'src/app/services/cep.service';
 
 const CPF_REGEX = '[0-9]{3}\.?[0-9]{3}\.?[0-9]{3}\-?[0-9]{2}';
 
@@ -22,7 +23,8 @@ export class RegisterUserComponent implements OnInit {
   };
   submitted = false;
   constructor(private userService: UserService,
-    private fb: FormBuilder) { }
+    private fb: FormBuilder,
+    private cepService: CepService) { }
 
   ngOnInit(): void {
     this.registerForm = this.buildForm();
@@ -43,7 +45,6 @@ export class RegisterUserComponent implements OnInit {
     //   console.log(response.data);
     // });
 
-
   saveUser(): void {
     const userData = {
       name: this.nome.value,
@@ -53,7 +54,9 @@ export class RegisterUserComponent implements OnInit {
       cpf: this.cpf.value,
       email: this.email.value
 
-    };
+  };
+
+
 
     // {
     //   cep: this.cep.value,
@@ -73,6 +76,25 @@ export class RegisterUserComponent implements OnInit {
         error => {
           console.log(error);
         });
+  }
+
+  validateCep() {
+    this.cepService.validateCep(this.registerForm.get('cep').value)
+      .subscribe(
+        response => {
+          console.log(response);
+          this.registerForm.patchValue({
+            logradouro: response.logradouro,
+            complemento: response.complemento,
+            bairro: response.bairro,
+            localidade: response.localidade,
+            uf: response.uf,
+          });
+        },
+        error => {
+          console.log(error);
+        });
+      // this.registerForm.get('username').setValue('luquinha')
   }
 
   newUser(): void {
@@ -96,7 +118,7 @@ export class RegisterUserComponent implements OnInit {
         Validators.maxLength(140)]),
       username: new FormControl('',[Validators.required]),
       idade: new FormControl('', [Validators.required]),
-      cep: new FormControl('',[Validators.required]),
+      cep: new FormControl('',[Validators.required, Validators.minLength(8)]),
       logradouro: new FormControl('',[Validators.required]),
       complemento: new FormControl('',[Validators.required]),
       bairro: new FormControl('',[Validators.required]),
@@ -124,6 +146,7 @@ export class RegisterUserComponent implements OnInit {
   }
 
   get cep() {
+
     return this.registerForm.get('cep');
   }
 
