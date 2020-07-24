@@ -11,6 +11,9 @@ const CPF_REGEX = '[0-9]{3}\.?[0-9]{3}\.?[0-9]{3}\-?[0-9]{2}';
   styleUrls: ['./register-user.component.css']
 })
 export class RegisterUserComponent implements OnInit {
+
+  public disableFields: boolean = false;
+
   registerForm: FormGroup
   user = {
     nome: '',
@@ -30,27 +33,12 @@ export class RegisterUserComponent implements OnInit {
     this.registerForm = this.buildForm();
   }
 
-  // send() {
-  //   console.log(new Date(this.birthdate.value));
-  //   const registrationData: Registration = {
-  //     name: this.name.value,
-  //     cpf: this.cpf.value,
-  //     selectedUf: this.selectedUf.value,
-  //     birthdate: formatDate(moment(this.birthdate.value, 'DD-MM-YYYY').toDate(), 'yyyy-MM-dd', 'en-US'),
-  //     email: this.email.value
-  //   };
-
-    // this.preregistration.register(registrationData)
-    // .subscribe((response) => {
-    //   console.log(response.data);
-    // });
-
   saveUser(): void {
     const userData = {
       name: this.nome.value,
       username: this.username.value,
       idade: this.idade.value,
-      endereco: this.logradouro.value,
+      endereco: this.concatAddres(),
       cpf: this.cpf.value,
       email: this.email.value
 
@@ -72,10 +60,37 @@ export class RegisterUserComponent implements OnInit {
         response => {
           console.log(response);
           this.submitted = true;
+          this.registerForm.reset();
+          this.enableAdressFields();
         },
         error => {
           console.log(error);
         });
+  }
+
+  concatAddres(){
+    return this.cep.value + ", " +
+          this.logradouro.value + ", " +
+          this.numero.value + ", " +
+          this.bairro.value + ", " +
+          this.complemento.value + ", " +
+          this.localidade.value + ", " +
+          this.uf.value;
+  }
+
+  disableAdressFields(){
+    this.registerForm.controls['logradouro'].disable();
+    this.registerForm.controls['bairro'].disable();
+    this.registerForm.controls['localidade'].disable();
+    this.registerForm.controls['uf'].disable();
+  }
+
+  enableAdressFields(){
+    this.registerForm.controls['logradouro'].enable();
+    this.registerForm.controls['complemento'].enable();
+    this.registerForm.controls['bairro'].enable();
+    this.registerForm.controls['localidade'].enable();
+    this.registerForm.controls['uf'].enable();
   }
 
   validateCep() {
@@ -90,9 +105,18 @@ export class RegisterUserComponent implements OnInit {
             localidade: response.localidade,
             uf: response.uf,
           });
+          this.disableAdressFields();
         },
         error => {
           console.log(error);
+          this.registerForm.patchValue({
+            logradouro: '',
+            complemento: '',
+            bairro: '',
+            localidade: '',
+            uf: '',
+          });
+          this.enableAdressFields();
         });
       // this.registerForm.get('username').setValue('luquinha')
   }
@@ -120,7 +144,8 @@ export class RegisterUserComponent implements OnInit {
       idade: new FormControl('', [Validators.required]),
       cep: new FormControl('',[Validators.required, Validators.minLength(8)]),
       logradouro: new FormControl('',[Validators.required]),
-      complemento: new FormControl('',[Validators.required]),
+      numero: new FormControl(''),
+      complemento: new FormControl(''),
       bairro: new FormControl('',[Validators.required]),
       localidade: new FormControl('',[Validators.required]),
       uf: new FormControl('',[Validators.required]),
@@ -146,7 +171,6 @@ export class RegisterUserComponent implements OnInit {
   }
 
   get cep() {
-
     return this.registerForm.get('cep');
   }
 
@@ -154,6 +178,9 @@ export class RegisterUserComponent implements OnInit {
     return this.registerForm.get('logradouro');
   }
 
+  get numero() {
+    return this.registerForm.get('numero');
+  }
   get complemento() {
     return this.registerForm.get('complemento');
   }

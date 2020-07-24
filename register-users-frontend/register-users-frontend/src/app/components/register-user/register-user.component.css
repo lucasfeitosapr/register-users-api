@@ -1,0 +1,43 @@
+.forms-info {
+  display: flex;
+
+}
+
+.column {
+  flex: 50%;
+}
+
+.fields {
+  margin-bottom: 10px;
+}
+
+.fields-left {
+  margin-left: 15px;
+}
+
+.input {
+  width: 300px;
+  height: 25px;
+  border-radius: 3px;
+  border: 1px solid #ccc;
+  margin-top: 5px;
+  box-shadow:  2px 5px  7px #ccc;
+}
+
+.submit-form {
+  width: 800px;
+  height: 800px;
+  background-color: aliceblue;
+  margin: auto;
+}
+
+.button-submit {
+  margin-top: 10px;
+}
+
+.centralize-form {
+  padding: 20px;
+}
+
+
+

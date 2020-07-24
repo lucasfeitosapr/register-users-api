@@ -1,164 +1,234 @@
-<div style="width: 400px; margin: auto;">
-  <div class="submit-form">
+<div class="submit-form">
+  <div class='centralize-form'>
     <div *ngIf="!submitted">
       <div class="form-group">
-        <form  [formGroup]="registerForm">
-          <!-- NOME -->
-          <div>
-            <input formControlName="nome" placeholder="Nome Completo" maxlength="140">
-          </div>
-          <div *ngIf="nome.invalid && nome.touched">
-            <div *ngIf="nome.errors.required">
-                Por favor, preencha o nome.
-            </div>
-            <div *ngIf="nome.errors.minlength">
-                O nome é muito curto.
-            </div>
-            <div *ngIf="nome.errors.maxlength">
-                O nome é muito longo.
-            </div>
-          </div>
-          <!-- END NOME -->
+        <form  [formGroup]="registerForm" >
+          <h3>Informações Pessoais</h3>
+          <div class='forms-info'>
+            <div class='column'>
+              <!-- NOME -->
+              <div class='fields'>
+                <div >
+                  <label>Nome Completo<br></label>
+                  <input class='input'formControlName="nome" placeholder="Ex: Lucas Feitosa Oliveira" maxlength="140">
+                </div>
+                <div *ngIf="nome.invalid && nome.touched">
+                  <div *ngIf="nome.errors.required">
+                      Por favor, preencha o nome.
+                  </div>
+                  <div *ngIf="nome.errors.minlength">
+                      O nome é muito curto.
+                  </div>
+                  <div *ngIf="nome.errors.maxlength">
+                      O nome é muito longo.
+                  </div>
+                </div>
+              </div>
+              <!-- END NOME -->
 
-          <!-- USERNAME -->
-          <div>
-            <input formControlName="username" placeholder="Apelido" maxlength="140">
-          </div>
-          <div *ngIf="username.invalid && username.touched">
-            <div *ngIf="username.errors.required">
-                Por favor, preencha o apelido.
+              <!-- USERNAME -->
+              <div class='fields'>
+                <div >
+                  <label>Apelido<br></label>
+                  <input class='input' formControlName="username" placeholder="Ex: luscas" maxlength="140">
+                </div>
+                <div *ngIf="username.invalid && username.touched">
+                  <div *ngIf="username.errors.required">
+                      Por favor, preencha o apelido.
+                  </div>
+                  <div *ngIf="username.errors.minlength">
+                      O apelido é muito curto.
+                  </div>
+                  <div *ngIf="username.errors.maxlength">
+                      O apelido é muito longo.
+                  </div>
+                </div>
             </div>
-            <div *ngIf="username.errors.minlength">
-                O apelido é muito curto.
+            <!-- END USERNAME -->
             </div>
-            <div *ngIf="username.errors.maxlength">
-                O apelido é muito longo.
-            </div>
+            <div class='column fields-left'>
+              <!-- IDADE -->
+              <div class='fields'>
+                <div >
+                  <label>Idade<br></label>
+                  <input class='input' formControlName="idade" placeholder="Ex: 25" type='number'>
+                </div>
+                <div *ngIf="idade.invalid && idade.touched">
+                  <div *ngIf="idade.errors.required">
+                      Por favor, preencha a idade.
+                  </div>
+                </div>
+                <!-- END IDADE -->
+              </div>
+              <div class='fields'>
+                <!-- CPF -->
+                <div>
+                  <label>CPF<br></label>
+                  <input class="input" formControlName="cpf" placeholder="Ex: 123.456.789-12">
+                </div>
+                <div *ngIf="cpf.invalid && cpf.touched">
+                  <div *ngIf="cpf.errors.required">
+                      Por favor, preencha o cpf.
+                  </div>
+                  <div *ngIf="cpf.errors.maxlength">
+                    O cpf é muito curto.
+                  </div>
+                  <div *ngIf="cpf.errors.pattern">
+                      O cpf inserido não é válido.
+                  </div>
+                </div>
+              </div>
+            <!-- END CPF -->
           </div>
-          <!-- END USERNAME -->
-
-          <!-- IDADE -->
-          <div>
-            <input formControlName="idade" placeholder="Idade">
-          </div>
-          <div *ngIf="idade.invalid && idade.touched">
-            <div *ngIf="idade.errors.required">
-                Por favor, preencha a idade.
-            </div>
-          </div>
-          <!-- END IDADE -->
-
+        </div>
+        <!-- END PERSONAL INFO -->
+        <h3>Endereço</h3>
+        <!-- ADRESS INFO -->
+        <div class='forms-info'>
           <!-- CEP -->
-          <div>
-            <input formControlName="cep" placeholder="Ex:12345-123" (focusout)="validateCep()">
-          </div>
-          <div *ngIf="cep.invalid && cep.touched">
-            <div *ngIf="cep.errors.required">
-                Por favor, preencha o cep.
+          <div class="column">
+            <div class='fields'>
+              <div>
+                <label>CEP<br></label>
+                <input class='input' formControlName="cep" placeholder="Ex: 12345-678" (focusout)="validateCep()">
+              </div>
+              <div *ngIf="cep.invalid && cep.touched">
+                <div *ngIf="cep.errors.required">
+                    Por favor, preencha o cep.
+                </div>
+              </div>
+              <!-- END CEP -->
             </div>
-          </div>
-          <!-- END CEP -->
 
-          <!-- LOGRADOURO -->
-          <div>
-            <input formControlName="logradouro" placeholder="Ex:Rua Marielle">
-          </div>
-          <div *ngIf="logradouro.invalid && logradouro.touched">
-            <div *ngIf="logradouro.errors.required">
-                Por favor, preencha o logradouro.
+            <div class='fields'>
+              <!-- LOGRADOURO -->
+              <div>
+                <label>Logradouro<br></label>
+                <input class='input' formControlName="logradouro" placeholder="Ex: Rua Marielle Franco">
+              </div>
+              <div *ngIf="logradouro.invalid && logradouro.touched">
+                <div *ngIf="logradouro.errors.required">
+                    Por favor, preencha o logradouro.
+                </div>
+              </div>
+              <!-- END LOGRADOURO -->
             </div>
-          </div>
-          <!-- END LOGRADOURO -->
+            <div class='fields'>
+              <div>
+                <label>Número<br></label>
+                <input class='input' formControlName="numero" placeholder="Ex: 123" type="number">
+              </div>
+              <div *ngIf="numero.invalid && numero.touched">
+                <div *ngIf="numero.errors.required">
+                    Por favor, preencha o numero.
+                </div>
+              </div>
+              <!-- END NUMERO -->
 
-          <!-- COMPLEMENTO -->
-          <div>
-            <input formControlName="complemento" placeholder="Complemento">
-          </div>
-          <div *ngIf="complemento.invalid && complemento.touched">
-            <div *ngIf="complemento.errors.required">
-                Por favor, preencha o complemento.
             </div>
           </div>
-          <!-- END COMPLEMENTO -->
 
-          <!-- BAIRRO -->
-          <div>
-            <input formControlName="bairro" placeholder="Bairro">
-          </div>
-          <div *ngIf="bairro.invalid && bairro.touched">
-            <div *ngIf="bairro.errors.required">
-                Por favor, preencha o bairro.
-            </div>
-          </div>
-          <!-- END BAIRRO -->
+            <!-- COMPLEMENTO -->
+            <div class="column fields-left">
+              <div class='fields'>
+                <div>
+                  <label>Complemento<br></label>
+                  <input class='input' formControlName="complemento" placeholder="Ex: Cj. Eldorado">
+                </div>
+                <!-- <div *ngIf="complemento.invalid && complemento.touched">
+                  <div *ngIf="complemento.errors.required">
+                      Por favor, preencha o complemento.
+                  </div>
+                </div> -->
+                <!-- END COMPLEMENTO -->
+              </div>
 
-          <!-- LOCALIDADE -->
-          <div>
-            <input formControlName="localidade" placeholder="Localidade">
-          </div>
-          <div *ngIf="localidade.invalid && localidade.touched">
-            <div *ngIf="localidade.errors.required">
-                Por favor, preencha a localidade.
+              <!-- BAIRRO -->
+              <div class='fields'>
+                <div>
+                  <label>Bairro<br></label>
+                  <input class='input' formControlName="bairro" placeholder="Ex: Centro">
+                </div>
+                <div *ngIf="bairro.invalid && bairro.touched">
+                  <div *ngIf="bairro.errors.required">
+                      Por favor, preencha o bairro.
+                  </div>
+                </div>
+                <!-- END BAIRRO -->
+
+              </div>
+
+
             </div>
           </div>
-          <!-- END LOCALIDADE -->
+          <div class='forms-info'>
+            <div class="column ">
+              <div class='fields'>
+                <!-- LOCALIDADE -->
+                <div>
+                  <label>Cidade<br></label>
+                  <input class='input' formControlName="localidade" placeholder="Ex: Manaus">
+                </div>
+                <div *ngIf="localidade.invalid && localidade.touched">
+                  <div *ngIf="localidade.errors.required">
+                      Por favor, preencha a cidade.
+                  </div>
+                </div>
+                <!-- END LOCALIDADE -->
+              </div>
+            </div>
+
+              <!-- UF -->
+              <div class="column fields-left">
+                <div>
+                  <label>Estado<br></label>
+                  <input class='input' formControlName="uf" placeholder="Ex: Amazonas" >
+                </div>
+                <div *ngIf="uf.invalid && uf.touched">
+                  <div *ngIf="uf.errors.required">
+                      Por favor, preencha o estado.
+                  </div>
+                </div>
+                <!-- END UF -->
+              </div>
+
+        </div>
+
 
           <!-- UF -->
-          <div>
-            <input formControlName="uf" placeholder="Uf">
-          </div>
-          <div *ngIf="uf.invalid && uf.touched">
-            <div *ngIf="uf.errors.required">
-                Por favor, preencha o estado.
-            </div>
-          </div>
-          <!-- END UF -->
 
-          <!-- UF -->
-          <div class='input-div'>
-            <input class="cpf" formControlName="cpf" placeholder="CPF">
-          </div>
-          <div *ngIf="cpf.invalid && cpf.touched">
-            <div *ngIf="cpf.errors.required">
-                Por favor, preencha o cpf.
-            </div>
-            <div *ngIf="cpf.errors.maxlength">
-              O cpf é muito curto.
-            </div>
-            <div *ngIf="cpf.errors.pattern">
-                O cpf inserido não é válido.
-            </div>
-          </div>
-        <!-- END CPF -->
-
+        <h3>Contato</h3>
         <!-- EMAIL -->
-          <div class='input-div'>
-            <input formControlName="email" placeholder="Email" maxlength="100">
-          </div>
-          <div *ngIf="email.invalid && email.touched">
-            <div *ngIf="email.errors.required">
-                Por favor, preencha o email.
+        <div class="forms-info">
+          <div class="column">
+            <div >
+              <label>Email<br></label>
+              <input class='input' formControlName="email" placeholder="Ex: lucasfeitosa@gmail.com" maxlength="100">
             </div>
-            <div *ngIf="email.errors.email">
-                Por favor, insira um email válido.
+            <div *ngIf="email.invalid && email.touched">
+              <div *ngIf="email.errors.required">
+                  Por favor, preencha o email.
+              </div>
+              <div *ngIf="email.errors.email">
+                  Por favor, insira um email válido.
+              </div>
             </div>
           </div>
+        </div>
       <!-- END EMAIL -->
-
-
-
 
         </form>
 
       </div>
-
-      <button [disabled]="registerForm.invalid"
-              (click)="saveUser()" class="btn btn-success">Submit</button>
+      <div class='forms-info button-submit '>
+        <button [disabled]="registerForm.invalid"
+                (click)="saveUser()" class="btn btn-success">Enviar</button>
+      </div>
     </div>
 
     <div *ngIf="submitted">
-      <h4>You submitted successfully!</h4>
-      <button class="btn btn-success" (click)="newUser()">Add</button>
+      <h4>Usuário cadastrado com sucesso!</h4>
+      <button class="btn btn-success" (click)="newUser()">Adicionar novo usuário</button>
     </div>
   </div>
 </div>
