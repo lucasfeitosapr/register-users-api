@@ -24,6 +24,8 @@ $ sudo make run
 ps: this makefile script adds things to your etc/hosts file. That's why it needs sudo. Don't worry about it tho :)
 
 ---
+### Endpoint - FrontEnd
+- http://frontend.register-users.com.br:8000
 
 ## Features
 - Register users
