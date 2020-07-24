@@ -19,7 +19,7 @@ setup:
 	@echo "${GREEN}Setting up postgres with its backup${RESET}"
 	docker-compose up -d postgres
 	sleep 5
-	# docker-compose exec -T postgres dropdb users -U postgres
+	docker-compose exec -T postgres dropdb users -U postgres
 	docker-compose exec -T postgres createdb users -U postgres
 	docker-compose exec -T postgres pg_restore -U postgres -v -d users < ./register-users-backend/users.backup
 	@echo
