@@ -46,21 +46,23 @@ export class RegisterUserComponent implements OnInit {
 
   saveUser(): void {
     const userData = {
-      nome: this.nome.value,
+      name: this.nome.value,
       username: this.username.value,
       idade: this.idade.value,
-      endereco: {
-        cep: this.cep.value,
-        logradouro: this.logradouro.value,
-        complemento: this.complemento.value,
-        bairro: this.bairro.value,
-        localidade: this.localidade.value,
-        uf: this.uf.value
-      },
+      endereco: this.logradouro.value,
       cpf: this.cpf.value,
       email: this.email.value
 
     };
+
+    // {
+    //   cep: this.cep.value,
+    //   logradouro: this.logradouro.value,
+    //   complemento: this.complemento.value,
+    //   bairro: this.bairro.value,
+    //   localidade: this.localidade.value,
+    //   uf: this.uf.value
+    // }
     console.log(userData);
     this.userService.create(userData)
       .subscribe(
