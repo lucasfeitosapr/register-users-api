@@ -1,1 +1,165 @@
-<p>register-user works!</p>
+<div style="width: 400px; margin: auto;">
+  <div class="submit-form">
+    <div *ngIf="!submitted">
+      <div class="form-group">
+        <form  [formGroup]="registerForm">
+          <!-- NOME -->
+          <div>
+            <input formControlName="nome" placeholder="Nome Completo" maxlength="140">
+          </div>
+          <div *ngIf="nome.invalid && nome.touched">
+            <div *ngIf="nome.errors.required">
+                Por favor, preencha o nome.
+            </div>
+            <div *ngIf="nome.errors.minlength">
+                O nome é muito curto.
+            </div>
+            <div *ngIf="nome.errors.maxlength">
+                O nome é muito longo.
+            </div>
+          </div>
+          <!-- END NOME -->
+
+          <!-- USERNAME -->
+          <div>
+            <input formControlName="username" placeholder="Apelido" maxlength="140">
+          </div>
+          <div *ngIf="username.invalid && username.touched">
+            <div *ngIf="username.errors.required">
+                Por favor, preencha o apelido.
+            </div>
+            <div *ngIf="username.errors.minlength">
+                O apelido é muito curto.
+            </div>
+            <div *ngIf="username.errors.maxlength">
+                O apelido é muito longo.
+            </div>
+          </div>
+          <!-- END USERNAME -->
+
+          <!-- IDADE -->
+          <div>
+            <input formControlName="idade" placeholder="Idade">
+          </div>
+          <div *ngIf="idade.invalid && idade.touched">
+            <div *ngIf="idade.errors.required">
+                Por favor, preencha a idade.
+            </div>
+          </div>
+          <!-- END IDADE -->
+
+          <!-- CEP -->
+          <div>
+            <input formControlName="cep" placeholder="Ex:12345-123">
+          </div>
+          <div *ngIf="cep.invalid && cep.touched">
+            <div *ngIf="cep.errors.required">
+                Por favor, preencha o cep.
+            </div>
+          </div>
+          <!-- END CEP -->
+
+          <!-- LOGRADOURO -->
+          <div>
+            <input formControlName="logradouro" placeholder="Ex:Rua Marielle">
+          </div>
+          <div *ngIf="logradouro.invalid && logradouro.touched">
+            <div *ngIf="logradouro.errors.required">
+                Por favor, preencha o logradouro.
+            </div>
+          </div>
+          <!-- END LOGRADOURO -->
+
+          <!-- COMPLEMENTO -->
+          <div>
+            <input formControlName="complemento" placeholder="Complemento">
+          </div>
+          <div *ngIf="complemento.invalid && complemento.touched">
+            <div *ngIf="complemento.errors.required">
+                Por favor, preencha o complemento.
+            </div>
+          </div>
+          <!-- END COMPLEMENTO -->
+
+          <!-- BAIRRO -->
+          <div>
+            <input formControlName="bairro" placeholder="Bairro">
+          </div>
+          <div *ngIf="bairro.invalid && bairro.touched">
+            <div *ngIf="bairro.errors.required">
+                Por favor, preencha o bairro.
+            </div>
+          </div>
+          <!-- END BAIRRO -->
+
+          <!-- LOCALIDADE -->
+          <div>
+            <input formControlName="localidade" placeholder="Localidade">
+          </div>
+          <div *ngIf="localidade.invalid && localidade.touched">
+            <div *ngIf="localidade.errors.required">
+                Por favor, preencha a localidade.
+            </div>
+          </div>
+          <!-- END LOCALIDADE -->
+
+          <!-- UF -->
+          <div>
+            <input formControlName="uf" placeholder="Uf">
+          </div>
+          <div *ngIf="uf.invalid && uf.touched">
+            <div *ngIf="uf.errors.required">
+                Por favor, preencha o estado.
+            </div>
+          </div>
+          <!-- END UF -->
+
+          <!-- UF -->
+          <div class='input-div'>
+            <input class="cpf" formControlName="cpf" placeholder="CPF">
+          </div>
+          <div *ngIf="cpf.invalid && cpf.touched">
+            <div *ngIf="cpf.errors.required">
+                Por favor, preencha o cpf.
+            </div>
+            <div *ngIf="cpf.errors.maxlength">
+              O cpf é muito curto.
+            </div>
+            <div *ngIf="cpf.errors.pattern">
+                O cpf inserido não é válido.
+            </div>
+          </div>
+        <!-- END CPF -->
+
+        <!-- EMAIL -->
+          <div class='input-div'>
+            <input formControlName="email" placeholder="Email" maxlength="100">
+          </div>
+          <div *ngIf="email.invalid && email.touched">
+            <div *ngIf="email.errors.required">
+                Por favor, preencha o email.
+            </div>
+            <div *ngIf="email.errors.email">
+                Por favor, insira um email válido.
+            </div>
+          </div>
+      <!-- END EMAIL -->
+
+
+
+
+        </form>
+
+      </div>
+
+      <button [disabled]="registerForm.invalid"
+              (click)="saveUser()" class="btn btn-success">Submit</button>
+    </div>
+
+    <div *ngIf="submitted">
+      <h4>You submitted successfully!</h4>
+      <button class="btn btn-success" (click)="newUser()">Add</button>
+    </div>
+  </div>
+</div>
+
