@@ -5,7 +5,7 @@ const cors = require("cors");
 const app = express();
 
 var corsOptions = {
-  origin: "http://localhost:8081"
+  origin: "http://frontend.register-users.com.br:8000"
 };
 
 app.use(cors(corsOptions));

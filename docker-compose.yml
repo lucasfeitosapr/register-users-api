@@ -1,0 +1,68 @@
+version: '3'
+services:
+  #NodeJs Service
+  register-users-backend:
+    build:
+      context: ./register-users-backend
+    ports:
+      - 8080:8080
+    restart: always
+    working_dir: /var/www/register-users-backend
+    command: node server.js
+    volumes:
+      - ./register-users-backend:/var/www/register-users-backend
+    networks:
+      - register-users
+    links: 
+      - postgres:postgres
+  #Angular Service
+  register-users-frontend:
+    build:
+      context: ./register-users-frontend
+    ports: 
+      - 8081:8081
+    working_dir: /var/www/register-users-frontend
+    command: http-server ./dist/register-users-frontend/ -p 8081 --cors
+    volumes: 
+      - ./register-users-frontend/src/app:/var/www/register-users-frontend/src/app
+    networks: 
+      - register-users
+  #Nginx Service
+  nginx:
+    image: nginx:alpine
+    restart: always
+    ports:
+      - "8000:8000"
+      - "443:443"
+    volumes:
+      - ./register-users-backend:/var/www/register-users-backend
+      - ./nginx/conf.d:/etc/nginx/conf.d
+    networks:
+      - register-users
+    depends_on:
+      - register-users-backend
+      - register-users-frontend
+    links: 
+      - register-users-frontend:register-users-frontend
+  #PostgresSQL Service
+  postgres:
+    restart: always
+    image: postgres:latest
+    environment:
+      POSTGRES_MULTIPLE_DATABASES: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - dbdata:/var/lib/postgresql/data/
+    networks:
+      - register-users
+#Docker Networks
+networks:
+  register-users:
+    driver: bridge
+#Volumes
+volumes:
+  dbdata:
+    driver: local
