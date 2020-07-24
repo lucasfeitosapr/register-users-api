@@ -1,0 +1,30 @@
+1. A solução deve ser disponibilizada em Cloud ou On-premise?
+
+- Em cloud acredito ser uma boa solução, tendo em vista a necessidade de se manter uma base atualizada/sincronizada
+com todos os seus usuários.
+
+2. Considerando a participação de 4 pessoas técnicas para o desenvolvimento dessa
+solução, responda qual ferramenta acreditas ser apropriada para o controle de
+tarefas da equipe, a ferramenta é ágil?
+
+- 'Individuals and Interactions over processes and tools'. Primeiramente acredito que
+várias ferramentas (AzureDevops, Trello, Clickup, Monday) disponíveis no mercado são 
+apropriadas para o controle de tarefas, mas além disso, um time tem que ter intimidade
+entre seus indivíduos e essas relações devem ser priorizadas, 
+além de maturidade para ser autogerenciável. Sem um time possui essas características, não importa
+muito a ferramenta. Em segundo lugar, acredito que o Monday.com é uma ferramenta com potencial.
+
+3. Você se sente capaz de liderar esta equipe? Por quê?
+
+- Sim. Apesar de não possuir experiência com liderança, acredito que é um desafio importante
+para a carreira de um engenheiro de software. Além disso, acredito que minhas softskills são
+compatíveis para liderança de uma pequena equipe.
+
+4. Se pudesse sugerir uma melhoria, mudança ou oportunidade. O que seria?
+
+- Acredito que o processo foi bem completo e não limitante.
+
+5. Acha válido esse desafio para o processo que está participando?
+
+- Sim, para o processo de Engenheiro de Software, o desafio foi bem completo e fez muito sentido,
+principalmente a montagem da arquitetura.
